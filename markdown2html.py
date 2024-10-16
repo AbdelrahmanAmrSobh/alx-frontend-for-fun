@@ -43,7 +43,7 @@ def translate_line(line: str):
 
 def translate_text(line, new_line, line_added):
     """Method used to translate paragraph"""
-    line = line[:-1]
+    line = line.replace("\n", "")
     prefix = ""
     postfix = ""
     first_space = new_line.find(" ")
@@ -59,6 +59,7 @@ def translate_text(line, new_line, line_added):
 
 def translate_list(line, old_line, new_line, tag_used):
     """Method used to translate unordered and ordered list"""
+    line = line.replace("\n", "")
     prefix = ""
     postfix = ""
     start_character = "- " if tag_used == "ul" else "* "
@@ -66,12 +67,12 @@ def translate_list(line, old_line, new_line, tag_used):
         prefix = f"<{tag_used}>\n"
     if not new_line or not new_line.startswith(start_character):
         postfix = f"</{tag_used}>\n"
-    return f"{prefix}\t<li>{line[2:-1]}</li>\n{postfix}"
+    return f"{prefix}\t<li>{line[2:]}</li>\n{postfix}"
 
 
 def translate_header(line):
     """Method used to translate header"""
-    line = line[:-1]
+    line = line.replace("\n", "")
     size = line.find(" ")
     line = line[size + 1:]
     if size > 6:
@@ -81,7 +82,7 @@ def translate_header(line):
 
 def translate(input_file, output_file):
     """Method that handles translation of markdown file"""
-    with open(input_file, 'r') as in_f, open(output_file, 'a') as out_f:
+    with open(input_file, 'r') as in_f, open(output_file, 'w') as out_f:
         lines = in_f.readlines()
         length = len(lines)
         old_line = ""
