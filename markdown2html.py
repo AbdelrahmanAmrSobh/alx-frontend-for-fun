@@ -107,7 +107,7 @@ def translate(input_file, output_file):
 
 if __name__ == "__main__":
     argc = len(sys.argv)
-    if argc < 2:
+    if argc < 3:
         print("Usage: ./markdown2html.py README.md README.html", file=stderr)
         sys.exit(1)
     markdown_file = sys.argv[1]
