@@ -114,5 +114,5 @@ if __name__ == "__main__":
     if not os.path.isfile(markdown_file):
         print(f"Missing {markdown_file}", file=stderr)
         sys.exit(1)
-    translate(markdown_file, sys.argv[2] if argc > 2 else "README.html")
+    translate(markdown_file, sys.argv[2])
     sys.exit(0)
