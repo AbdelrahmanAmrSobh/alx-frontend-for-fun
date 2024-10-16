@@ -47,7 +47,7 @@ def translate_text(line, new_line, line_added):
     prefix = ""
     postfix = ""
     first_space = new_line.find(" ")
-    if line_added.find("</") > -1:
+    if not line_added or line_added.find("</") > -1:
         prefix = "<p>\n"
     if (not new_line or new_line.startswith(("* ", "- ", "\n")))\
             or (first_space > 0 and new_line.startswith(first_space * "#")):
